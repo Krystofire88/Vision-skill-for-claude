@@ -64,7 +64,7 @@ and stop wherever you like. `[SAID] [CHEAP]` can be ignored forever.
 |---|---|
 | `/vision-build` | Sweeps `CLAUDE.md`, README, docs, specs, issues, the board, git history and code constants. Writes `VISION.md` on a branch. Touches nothing else. |
 | `/vision-apply` | Refuses while any `A:` is blank. Otherwise shows a manifest and waits, then suspends the old documents to `docs/suspended/` and rewrites them from the file. |
-| `/vision-check` | Guards it: dead citations, unanswered entries, orphaned rulings, duplicate ids, missing anchors, missing tags. |
+| `/vision-check` | Guards it: dead citations, unanswered entries, orphaned rulings, suspension by copy, duplicate ids, missing anchors, missing tags. |
 
 `vision-apply` also installs a rule into the rewritten `CLAUDE.md` so this stops
 being a one-off sweep. From then on, when work reaches something the file does
