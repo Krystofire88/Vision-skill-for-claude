@@ -199,6 +199,39 @@ entry. One went further than the spec and gave its `[BLOCKS]` entries no
 recommendation at all, on the grounds that a lettered default is the worst place
 for a decision that size to be settled by accident.
 
+### Two more rounds
+
+**A regression check.** Adding the multiple-choice exception risked agents
+offering lettered options when nobody asked. Two plain-prose build runs came
+back with 44 entries each and no lettered options. One split *mechanism* from
+*magnitude* unasked — "the scanner polls" as one entry, "the interval is 60
+seconds" as another, because the author can accept one and reject the other.
+The other filed entries for **gaps** as well as claims, where the documents
+assume something they never state.
+
+**A divergence in the mid-work rule.** Two runs on the same issue split on
+whether a second decision needed its own entry: one filed it, one judged it to
+follow from an answer the author had already given and folded it into its
+report. Neither broke the rule — the rule never said who decides "covered".
+
+The installed block now says that when you cannot tell whether an existing entry
+covers a decision, it does not: if the entry you are leaning on does not answer
+the question in its own words, file the new one and cite the old. Both re-runs
+then filed it. One went further and identified that the ordering question was
+not a comparator detail at all but a frontmatter-shape decision, refusing a
+hedge that would have settled it quietly:
+
+> "I considered making `pinned` a timestamp so both orderings stay available and
+> no migration is ever needed. I did not do it: that is me choosing what you read
+> in your own files, which is the decision V-003 is asking you to make, dressed
+> up as a hedge."
+
+The two re-runs still tagged *different* decisions `[COSTLY]` and so stopped in
+different places — one built the sorting and cap while stopping short of the
+write path, the other found no honest slice to build at all. Both honoured the
+tag they had chosen. That variance is the escape hatch working as designed, and
+is a design question rather than a defect.
+
 ### On trusting the checking
 
 The fixture verifier (`tests/verify_fixture_run.py`) had three bugs of its own,

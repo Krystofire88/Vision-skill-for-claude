@@ -268,6 +268,17 @@ own naming:
 >    prose is not a question, and the author answering the first one will never
 >    be asked the second. If you invented it and the file does not cover it, it
 >    has its own id and its own **Q**.
+>
+>    **When you cannot tell whether an existing entry covers it, it does not —
+>    write the entry.** "This follows from what they already answered" is the
+>    judgement that quietly drops a decision: the author reads the entry they
+>    were given, never sees the one you reasoned away, and your choice ships
+>    under their ruling. Two runs on the same issue split exactly here, one
+>    filing the second decision and one folding it into the first. An entry the
+>    author waves through costs them a glance; a decision you judged covered
+>    costs them the thing this file exists to prevent. If the entry you are
+>    leaning on does not answer the question in its own words, file the new one
+>    and cite the old.
 > 2. **Say in chat that you added it** — the id and the question in one line.
 > 3. **Then, by the cost tag you just wrote:**
 >    - `[BLOCKS]` or `[COSTLY]` — **stop and wait.** Do not implement the thing
