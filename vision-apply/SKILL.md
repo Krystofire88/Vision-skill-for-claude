@@ -119,9 +119,19 @@ vision-apply will change:
   BOARD
     no changes
 
+  GUARD INSTALLED                (step 6 — always listed, never a surprise)
+    scripts/vision_check.py      new file; plus the line in CLAUDE.md that runs it
+
   UNTOUCHED
     everything under src/, tests/, .github/
 ```
+
+**The guard goes on the manifest, always.** Step 6 installs `vision_check.py`
+into the project, so it is a file this command creates and belongs on the list
+like any other. Two test runs left it off, added it anyway because step 6
+requires it, and reported the amendment afterwards — correct behaviour under
+instructions that contradicted each other, and the contradiction is the defect.
+List it up front and there is nothing to amend.
 
 Call out anything sensitive by name — a `CLAUDE.md` the author hand-wrote, a
 README that is the project's public face, an issue with third-party discussion

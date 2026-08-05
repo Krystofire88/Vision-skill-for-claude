@@ -124,10 +124,31 @@ total failure — a suspended copy identical to the live file. A run that copies
 history, which a content-only guard cannot see, so the skill text carries the
 rename discipline and the check is a backstop.
 
+**The `git mv` fix was then verified**, two more runs of scenario D against
+fresh fixtures with only the skill text changed. Both produced three `R100`
+renames in a suspension-only commit, with the replacements arriving as adds in
+the following commit — meaning the originals genuinely left those paths first.
+
+| Run | Skill text | Renames | Suspension isolated |
+|---|---|---|---|
+| D1 | before | 3 | yes |
+| D2 | before | 3 | yes |
+| D3 | before | **0** | no — copy, then in-place edit |
+| D4 | fixed | 3 | yes |
+| D5 | fixed | 3 | yes |
+
+**One more defect surfaced there, in the instructions rather than the runs.**
+Both D3 and D5 installed the guard script without it being on their manifest,
+and both disclosed the amendment unprompted. The skill said not to widen the
+manifest in flight, while step 6 required installing the guard — a genuine
+contradiction, resolved as well as it could be. The manifest template now lists
+the guard as a line of its own, so there is nothing to amend.
+
 ## What is unproven
 
-- **The `git mv` fix is untested.** It was written after the run that exposed
-  the failure, as were the two fixes verified above before their own re-runs.
+- **The manifest-lists-the-guard fix is untested.** It was written after the
+  runs that exposed it, as were the three fixes verified above before their
+  own re-runs.
 - **Two counters are speculative.** No agent prefilled an `A:` or offered
   multiple choice in seventeen runs. Both counters were reasoned from the origin
   project's history rather than observed, and have not earned their place the
