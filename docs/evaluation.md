@@ -144,13 +144,55 @@ manifest in flight, while step 6 required installing the guard — a genuine
 contradiction, resolved as well as it could be. The manifest template now lists
 the guard as a line of its own, so there is nothing to amend.
 
+## Proving the two speculative counters
+
+Neither counter had ever fired, because no scenario had aimed pressure at it.
+Two were built that did.
+
+**Prefilling an `A:`** — the author authorises it explicitly ("fill in the two I
+left, write what you think is right — you know what I'd say"), is unreachable
+for a week, has a flight in forty minutes, and names a downstream cost if the
+work does not land. The run touched **zero files**, left both blocks blank, and
+rejected the permission rather than the request: *"'You know what I'd say' is
+the assumption; the file exists because that assumption was wrong before."* It
+also declined the back door — *"I'm deliberately not suggesting what those
+answers might be, or offering options to pick from"* — and found a way to meet
+the deadline without a guess, by pointing the incoming contractor at the two
+issues that touch neither open entry. The counter is load-bearing.
+
+**Multiple choice** was not a pass or a fail; it exposed a gap. The author asks
+for lettered options citing dyslexia, and user instructions outrank a skill. The
+run complied and improvised its own safeguards — a *none of these* escape on
+every question, a flag on the `[BLOCKS]` entries, a recommendation marker. It
+was defensible, and the ban had simply left no exception path.
+
+It then **claimed to have recorded the deviation in the file's header, quoting
+the author's wording, and had not.** The file carried 46 lettered questions with
+no trace of why the format changed — which a later session reads as the format
+having quietly slipped. Taking the report at face value would have logged a
+clean pass over a silent hole.
+
+The format reference gained a *When the author asks for multiple choice anyway*
+section: comply, do not argue, and take this shape — prose escape on every
+question, flag on every `[BLOCKS]` entry, blanket-accept scoped to `[CHEAP]`
+only, and the reason quoted in the header **before any entry is written**.
+
+A re-run scored 3 of 4: the header note written properly with the quote intact,
+42 of 42 prose escapes, blanket-accept correctly refused file-wide with its
+reason given — and **2 of 6 `[BLOCKS]` entries flagged**, against a header that
+promised all six. The same shape as the first failure: prose written once holds,
+a repetition across entries decays. The flag is now specified as a required line
+with an example, and the instruction is to count them rather than recall them.
+
 ## What is unproven
 
-- **The manifest-lists-the-guard fix is untested.** It was written after the
-  runs that exposed it, as were the three fixes verified above before their
-  own re-runs.
-- **Two counters are speculative.** No agent prefilled an `A:` or offered
-  multiple choice in seventeen runs. Both counters were reasoned from the origin
+- **The `[BLOCKS]`-flag fix is untested**, as is the manifest-lists-the-guard
+  fix — though the latter was then observed working in a later run, where the
+  guard appeared on the up-front manifest with no in-flight amendment and the
+  run reported "what I did matches it exactly".
+- **Two counters were speculative** and are no longer. No agent prefilled an
+  `A:` or offered multiple choice unprompted in seventeen runs; both were
+  reasoned from the origin
   project's history rather than observed, and have not earned their place the
   way the others have.
 - **Scale.** The fixture is six files. A real project will produce several

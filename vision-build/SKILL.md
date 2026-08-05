@@ -116,6 +116,13 @@ format reference for what counts.
 words in the author's mouth. State what the documents currently claim, then ask
 in prose, and expect the answer to go further than any option would have.
 
+**If the author asks for lettered options, they get them** — they may have a
+reason the ban does not anticipate, and it is their call. Do not refuse and do
+not argue. The format reference's *When the author asks for multiple choice
+anyway* section says what shape it takes: a prose escape on every question, a
+flag on every `[BLOCKS]` entry, no blanket-accept, and the reason quoted in the
+file's header **before any entry is written**.
+
 ### 4 · Extending an existing VISION.md
 
 There is only ever one truth file. If it exists:

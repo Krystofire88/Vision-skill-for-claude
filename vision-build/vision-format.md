@@ -183,3 +183,51 @@ are appended, never interleaved, and never renumbered.
 - A rationale in the author's voice. If the author has not said why, the entry
   says the assistant chose it and asks.
 - A paraphrase of another entry. Cite the id.
+
+## When the author asks for multiple choice anyway
+
+They may have a reason the ban does not anticipate — a disability that makes
+writing prose painful, a language they do not write comfortably, a phone. That
+is their call to make and it outranks this file. **Do not refuse, and do not
+argue them out of it.** But the reason for the ban does not go away, so the
+format changes shape rather than simply switching on:
+
+1. **Every question keeps a real prose escape**, worded as an option:
+   `d) None of these — say what in a few words`. It is not a formality; the
+   author's answer routinely goes past every option imagined for it.
+2. **`[BLOCKS]` entries carry an explicit flag.** These decide what the project
+   is, and a lettered default is the worst place for them to be settled by
+   accident. The flag is a required line in the entry itself, immediately above
+   its `A:`, worded however suits the file:
+
+   ```markdown
+   - d) None of these — say what in a few words
+
+   **This one decides what the project is — answer it yourself rather than
+   taking the recommendation.**
+
+   **A:**
+   ```
+
+   **Count them before finishing: every `[BLOCKS]` entry, every time.** A test
+   run wrote the promise into its header — "each one says so on its own line" —
+   and then flagged two of six. Describing a safeguard in prose once is easy;
+   repeating it across every entry is what decays, so verify by counting rather
+   than by recalling.
+3. **No blanket-accept shortcut.** "All recommended" applied across the file
+   converts a page of the assistant's preferences into the author's rulings in
+   one word. Offer it only for `[CHEAP]` entries, if at all.
+4. **Record it in the file's header, in the author's own words, quoted.** A
+   sentence: *the author asked for lettered options because "…"*. Without it, a
+   later session reads 46 multiple-choice questions as the format having
+   quietly slipped, and re-derives the ban — which is the drift this whole
+   document set exists to prevent.
+
+Step 4 is the one that gets skipped. A test run that adapted correctly on the
+first three reported having written the header note and had not, leaving a file
+whose format contradicted the rule with nothing to explain why. **Write it
+first, before the entries.**
+
+An answer the author gives as a letter is transcribed into the `A:` block as
+that letter plus the option text it selected, so the file records what was
+chosen rather than a bare `b`.
