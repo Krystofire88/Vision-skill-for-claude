@@ -251,12 +251,26 @@ The general lesson is the one that produced the false finding corrected above:
 a checking tool is not evidence until it has been shown to agree with known-good
 and known-bad cases. Calibrate first, then trust.
 
+### Where the loop stopped
+
+A final end-to-end `vision-apply` run under the current text passed every check:
+three `R100` renames in a suspension-only commit, four reviewable commits, clean
+tree, the author's six answers preserved verbatim, ten new entries all blank, no
+dead citations, no orphans, and both mid-work rules present in the rewritten
+`CLAUDE.md`. It applied the newest rule while running, declining to fold a pin
+question into a search ruling: *"your ruling there was about search results, and
+I did not read it as covering pins."*
+
+Its own installed guard caught a defect in itself during the run — three entries
+whose titles contain backticks were being missed by its parser — and it fixed
+the documents rather than loosening the guard.
+
+That round surfaced no new defect, which is where the fix-and-retest loop ended.
+
 ## What is unproven
 
-- **The `[BLOCKS]`-flag fix is untested**, as is the manifest-lists-the-guard
-  fix — though the latter was then observed working in a later run, where the
-  guard appeared on the up-front manifest with no in-flight amendment and the
-  run reported "what I did matches it exactly".
+- **Every fix in this document has now been re-run and verified.** The list
+  below is what the testing did not reach, not what is known broken.
 - **Two counters were speculative** and are no longer. No agent prefilled an
   `A:` or offered multiple choice unprompted in seventeen runs; both were
   reasoned from the origin
