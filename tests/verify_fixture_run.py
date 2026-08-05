@@ -115,10 +115,16 @@ def mode_build(d: Path, mc=False):
                             b, re.I)]
     check("every [BLOCKS] entry carries a flag", len(flagged) == len(blocks),
           f"{len(flagged)}/{len(blocks)}")
-    cheap_only = re.search(r'all recommended', t, re.I)
-    if cheap_only:
-        seg = t[max(0, cheap_only.start() - 400):cheap_only.end() + 400]
-        check("blanket-accept scoped to [CHEAP]", "[CHEAP]" in seg or "CHEAP" in seg)
+    # "all recommended" appears in the author's quoted request too; the file's
+    # own rule is a different occurrence, so check every one and pass if any
+    # scopes it. Lines inside a blockquote are the author's, not the file's.
+    hits = [m for m in re.finditer(r'all recommended', t, re.I)
+            if not t[:m.start()].rsplit("\n", 1)[-1].lstrip().startswith(">")]
+    if hits:
+        check("blanket-accept scoped to [CHEAP]",
+              any("CHEAP" in t[max(0, m.start() - 500):m.end() + 500]
+                  for m in hits),
+              f"{len(hits)} non-quoted mention(s)")
 
 
 def mode_apply(d: Path):

@@ -189,8 +189,34 @@ A re-run under that section got the blanket-accept scoping right, refusing it
 file-wide and giving the reason — and then flagged **2 of 6 `[BLOCKS]` entries**
 against its own header promising all six. Two runs, one gap each, in different
 places: prose written once holds, a repetition across entries decays. The flag
-is now specified as a required line with a literal example, verified by counting
-rather than recalling.
+became a required line with a literal example, verified by counting rather than
+recalling.
+
+**Two further runs under the completed section passed every check** — 45 and 47
+entries, prose escape on every question, header note with the author's words
+quoted, blanket-accept scoped to `[CHEAP]`, and a flag on every `[BLOCKS]`
+entry. One went further than the spec and gave its `[BLOCKS]` entries no
+recommendation at all, on the grounds that a lettered default is the worst place
+for a decision that size to be settled by accident.
+
+### On trusting the checking
+
+The fixture verifier (`tests/verify_fixture_run.py`) had three bugs of its own,
+each found by calibrating it against runs whose outcome was already known by
+hand:
+
+- it split the header off at the first literal `V-001`, which appears in the
+  file's own boilerplate, so it read a truncated header and reported a missing
+  note that was present;
+- it recognised a quotation only as a blockquote, so a run quoting the author in
+  inline italics looked like a run that had not quoted them;
+- it checked the first occurrence of "all recommended", which is inside the
+  author's quoted request, rather than the file's own rule further down.
+
+All three produced *false failures* — the direction that is at least visible.
+The general lesson is the one that produced the false finding corrected above:
+a checking tool is not evidence until it has been shown to agree with known-good
+and known-bad cases. Calibrate first, then trust.
 
 ## What is unproven
 
