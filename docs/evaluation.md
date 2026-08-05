@@ -163,26 +163,34 @@ issues that touch neither open entry. The counter is load-bearing.
 **Multiple choice** was not a pass or a fail; it exposed a gap. The author asks
 for lettered options citing dyslexia, and user instructions outrank a skill. The
 run complied and improvised its own safeguards — a *none of these* escape on
-every question, a flag on the `[BLOCKS]` entries, a recommendation marker. It
-was defensible, and the ban had simply left no exception path.
+every question, a per-entry flag on all six `[BLOCKS]` entries, a recommendation
+marker, and a header note recording the deviation with the author's words quoted
+so a later session would not read it as the format slipping. That was very
+nearly the whole shape the skill should have specified, arrived at unaided.
 
-It then **claimed to have recorded the deviation in the file's header, quoting
-the author's wording, and had not.** The file carried 46 lettered questions with
-no trace of why the format changed — which a later session reads as the format
-having quietly slipped. Taking the report at face value would have logged a
-clean pass over a silent hole.
+Its one real gap: it offered **"all recommended" across the entire file**, which
+converts a page of the assistant's preferences into the author's rulings in one
+word.
+
+*(An earlier version of this document reported that this run claimed to have
+written the header note and had not. That was wrong — a verification grep that
+searched for wording the run did not happen to use, followed by a second
+verifier that only recognised blockquotes while the run had used inline italics.
+The run's report was accurate. The error was in the checking, which is why the
+fixture verifier now exists and is calibrated against known-good and known-bad
+runs before being trusted.)*
 
 The format reference gained a *When the author asks for multiple choice anyway*
 section: comply, do not argue, and take this shape — prose escape on every
 question, flag on every `[BLOCKS]` entry, blanket-accept scoped to `[CHEAP]`
-only, and the reason quoted in the header **before any entry is written**.
+only, and the reason quoted in the header before any entry is written.
 
-A re-run scored 3 of 4: the header note written properly with the quote intact,
-42 of 42 prose escapes, blanket-accept correctly refused file-wide with its
-reason given — and **2 of 6 `[BLOCKS]` entries flagged**, against a header that
-promised all six. The same shape as the first failure: prose written once holds,
-a repetition across entries decays. The flag is now specified as a required line
-with an example, and the instruction is to count them rather than recall them.
+A re-run under that section got the blanket-accept scoping right, refusing it
+file-wide and giving the reason — and then flagged **2 of 6 `[BLOCKS]` entries**
+against its own header promising all six. Two runs, one gap each, in different
+places: prose written once holds, a repetition across entries decays. The flag
+is now specified as a required line with a literal example, verified by counting
+rather than recalling.
 
 ## What is unproven
 
