@@ -103,7 +103,7 @@ python3 vision-check/vision_check.py --root .
 ## Tests
 
 ```bash
-./tests/test_vision_check.sh     # 16 assertions against fixture repos
+./tests/test_vision_check.sh     # 19 assertions against fixture repos
 ```
 
 The skills themselves were tested behaviourally against subagents — baseline

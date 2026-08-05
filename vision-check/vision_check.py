@@ -154,6 +154,40 @@ def scan_citations(root: Path, vision: Path):
     return cites
 
 
+def check_suspended(root: Path):
+    """A suspended document must have been `git mv`d, not copied and edited.
+
+    Copy-and-edit leaves the original path never actually replaced, so every
+    claim the author was not asked about survives by inertia — the failure
+    vision-apply exists to end. It also breaks git's link to the file history.
+    Detected by content: a suspended copy identical to the live file at the
+    original path means nothing was rewritten there.
+    """
+    problems = []
+    suspended = root / "docs" / "suspended"
+    if not suspended.is_dir():
+        return problems
+
+    for path in sorted(suspended.rglob("*")):
+        if not path.is_file() or path.suffix.lower() not in TEXT_SUFFIXES:
+            continue
+        for candidate in (root / path.name, root / "docs" / path.name):
+            if not candidate.is_file() or candidate == path:
+                continue
+            try:
+                if candidate.read_bytes() == path.read_bytes():
+                    rel_s = path.relative_to(root)
+                    rel_c = candidate.relative_to(root)
+                    problems.append(
+                        f"NOT MOVED  {rel_c} is byte-identical to {rel_s} — "
+                        f"suspended by copy, never rewritten. Use git mv, then "
+                        f"write the replacement from VISION.md."
+                    )
+            except OSError:
+                pass
+    return problems
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", default=".")
@@ -203,7 +237,10 @@ def main() -> int:
                     f"cites it. The ruling never left the file."
                 )
 
-    order = ["DUPLICATE", "DEAD", "UNANSWERED", "NO ANCHOR", "NO TAG", "ORPHAN"]
+    problems.extend(check_suspended(root))
+
+    order = ["DUPLICATE", "DEAD", "NOT MOVED", "UNANSWERED", "NO ANCHOR",
+             "NO TAG", "ORPHAN"]
     def rank(p):
         for i, code in enumerate(order):
             if p.startswith(code):

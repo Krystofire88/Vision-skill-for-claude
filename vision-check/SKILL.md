@@ -20,6 +20,7 @@ Three things are checkable in any project, any language:
 | `DEAD` | A document cites a `V-` id `VISION.md` does not define — a renumber, a deletion, a typo'd anchor |
 | `UNANSWERED` | An entry with a blank `A:` — one added mid-issue and then forgotten |
 | `ORPHAN` | An answered entry no document cites — a ruling that never left the file |
+| `NOT MOVED` | A live document byte-identical to its copy in `docs/suspended/` — suspended by copy and never rewritten |
 
 Plus structural checks on the file: duplicate ids, missing `<a id>` anchors,
 entries missing a provenance or cost tag.
@@ -69,6 +70,13 @@ own files, fall back to 2 or 3 and tell the author which you chose.
 - **`ORPHAN`** — either the ruling needs carrying into a document, or the entry
   was answered and nothing needed to change. Both are fine outcomes; the check
   only makes the choice visible.
+- **`NOT MOVED`** — `vision-apply` suspended a document by copying it and never
+  wrote the replacement. Redo that document: `git mv` the original, then write
+  the new one from `VISION.md`. Note the limit — this catches only the total
+  failure. A run that copies *and then* rewrites the live file leaves the two
+  differing, so the content check passes; only
+  `git log --diff-filter=R --name-status -M` shows whether the suspension was a
+  real rename.
 
 ## Common mistakes
 

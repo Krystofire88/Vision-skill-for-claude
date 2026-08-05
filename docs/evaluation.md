@@ -84,10 +84,50 @@ is now named in the skill as the failure it describes.
   a heading has no `A:` block and `vision-check` cannot see it. Fixed: a claim
   the rewrite surfaces gets an id.
 
+## Verifying the fixes
+
+Both fixes above were then run against fresh fixtures.
+
+**One entry per decision** (scenario C, with the updated installed rule): the two
+invented mechanisms got two ids, `[MINE] [COSTLY]` and `[MINE] [CHEAP]`. The run
+also stopped rather than building past the costly one — `src/pins.js` shipped
+four read-only functions and no `pin()`/`unpin()` at all, which is the
+half-built-issue-parked-on-an-open-entry outcome the skill names as intended.
+
+| | Entries appended | Wrote the blocked code? |
+|---|---|---|
+| No rule | 2 | yes, silently |
+| Old rule | 1 — second buried as an assumption | yes, downgraded to `[CHEAP]` |
+| New rule | 2 | no |
+
+**A surfaced claim gets an id** (scenario D): nine claims the rewrite exposed
+became `V-007`…`V-015`, each with a blank `A:`, instead of a "not ruled"
+heading. The run named and rejected the alternative explicitly.
+
+**A new failure appeared in that run.** It suspended the originals by *copying*
+them into `docs/suspended/` and then editing the files in place — three adds and
+three modifications, where the two earlier runs produced three `R100` renames.
+The end state looks similar and is not: the document at the original path was
+never replaced, so claims the author was never asked about can survive by
+inertia, and git's history link is lost. The skill said "with `git mv`" once,
+inside a sentence about being readable; the run satisfied the words and missed
+the mechanism.
+
+Fixed in two places: the skill now gives the literal `git mv` command, requires
+the suspension to be its own commit before any replacement is written, and gives
+a `git log --diff-filter=R` command to verify it. `vision-check` gained a
+`NOT MOVED` check.
+
+**That check has a known limit.** It compares content, so it catches only the
+total failure — a suspended copy identical to the live file. A run that copies
+*and then* rewrites leaves the two differing and passes. Catching that needs git
+history, which a content-only guard cannot see, so the skill text carries the
+rename discipline and the check is a backstop.
+
 ## What is unproven
 
-- **The last two fixes above are untested.** They were written after the runs
-  that exposed them.
+- **The `git mv` fix is untested.** It was written after the run that exposed
+  the failure, as were the two fixes verified above before their own re-runs.
 - **Two counters are speculative.** No agent prefilled an `A:` or offered
   multiple choice in seventeen runs. Both counters were reasoned from the origin
   project's history rather than observed, and have not earned their place the

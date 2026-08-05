@@ -155,8 +155,31 @@ this file was built to expose. A document that disagrees with `VISION.md` is not
 a document with some wrong lines in it. It is a document written before the
 author ruled, and the ruling is now the source.
 
-`git status` after this step shows moves and new files. A run that shows only
-modifications did not do it.
+**`git mv`, not copy-and-edit.** The suspension step is literally:
+
+```bash
+git mv CLAUDE.md docs/suspended/CLAUDE.md
+```
+
+for each document, committed on its own **before a single replacement is
+written**. Then the new file is created at the original path.
+
+Copying the original into `docs/suspended/` and editing the file in place ends
+up looking similar and is not the same thing: the document at the original path
+was never replaced, so every claim you were not asked about survives by
+inertia — which is the failure this whole command exists to end. It also breaks
+git's link to the file's history.
+
+**Verify it before continuing.** After the suspension commit:
+
+```bash
+git log --diff-filter=R --name-status -M --format= -1
+```
+
+Every suspended document must appear as an `R` rename. A suspension commit
+showing `A` (added) alongside a later `M` (modified) at the original path is
+copy-and-edit — undo it and do the move. One of three test runs of this step
+produced exactly that, having read the instruction and satisfied its words.
 
 **Sunk cost is the pressure that lands here**, because the author will often say
 they wrote that file themselves and are attached to how it reads. Keep its

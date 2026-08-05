@@ -128,6 +128,35 @@ echo "clean fixture:"
 assert "exits 0 when clean"                     "$([ "$code" = "0" ] && echo 0 || echo 1)"
 assert "reports clean"                          "$(grep -q 'clean' <<<"$out" && echo 0 || echo 1)"
 
+# ------------------------------------------------------------ suspended by copy
+mkdir -p "$TMP/copied/docs/suspended"
+cat > "$TMP/copied/VISION.md" <<'EOF'
+# VISION
+
+<a id="v-001"></a>
+#### V-001 · Answered `[SAID] [CHEAP]`
+
+**Explain:** Fine.
+
+**Q:** Yes?
+
+**A:** Yes.
+EOF
+printf 'Rules cite V-001.\nold claim: purged after 30 days\n' > "$TMP/copied/CLAUDE.md"
+cp "$TMP/copied/CLAUDE.md" "$TMP/copied/docs/suspended/CLAUDE.md"
+
+out="$(python3 "$CHECK" --root "$TMP/copied" --no-orphans 2>&1)"; code=$?
+echo "suspended-by-copy fixture:"
+assert "NOT MOVED when the live file is identical to its suspended copy" \
+  "$(grep -q '^NOT MOVED .*CLAUDE.md' <<<"$out" && echo 0 || echo 1)"
+assert "exits 1 on NOT MOVED"  "$([ "$code" = "1" ] && echo 0 || echo 1)"
+
+# and the same repo once the live file has actually been rewritten
+printf 'Rules cite V-001.\nnothing is destroyed automatically (V-001).\n' > "$TMP/copied/CLAUDE.md"
+out="$(python3 "$CHECK" --root "$TMP/copied" --no-orphans 2>&1)"
+assert "NOT MOVED clears once the live file is rewritten" \
+  "$(grep -q '^NOT MOVED' <<<"$out" && echo 1 || echo 0)"
+
 # ---------------------------------------------------------------- missing file
 python3 "$CHECK" --root "$TMP" >/dev/null 2>&1; code=$?
 echo "no VISION.md:"
